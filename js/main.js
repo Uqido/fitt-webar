@@ -9,13 +9,16 @@ function getContentRoot(){
 function instantiateModelContent(srcUrl,assetName){
     const element = document.createElement("a");
     element.classList.add("image-element");
-    //element.style.backgroundImage=`url('img/Bostel/${assetName}.jpg')`;
+    element.style.backgroundImage=`url('img/Manici/${assetName}.jpg')`;
     element.href=`${srcUrl}/${assetName}.html`;
     contentRoot.appendChild(element);
 }
 
 function isLocalhost(){
-    return !window.location.host.replace(":8080", "").replace(/localhost|127\.0\.0\.1/i, '');
+    return !window.location.host
+        .replace(":8081", "")
+        .replace(":8080", "")
+        .replace(/localhost|127\.0\.0\.1|192\.168\.1\.\d+/i, '');
 }
 
 function parseJson(json){

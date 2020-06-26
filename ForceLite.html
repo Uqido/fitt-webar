@@ -51,10 +51,16 @@
               camera-target="0 0 3cm"
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
+    
+    <div id="viewer-bottom" class="viewer-bottom">
+            <div id="move_camera" onclick="rotateCamera()" class="clickable" style="background-image: url(img/Move.png);"></div>
+        <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
+    </div>
     <script>
-        const materialArray = ["Manico_mat"];
-        let colors = [{colorBlack: 'rgb(0,0,0)'}, {colorRed: 'rgb(248,0,4)'}, {colorGrey: 'rgb(11,11,11)'}];
-        let bumps = [{colorBlack: 1}, {colorRed: 0}, {colorGrey: 0}];
+        const materialArray = [[]];
+        let colors = []
+        
+        let bumps = []
 
         const positions = [
             
@@ -68,12 +74,17 @@
 
         const positionToAnnotation = {
             0:[]
-            }
-        ;
+            };
+        
+        const hasAnimations=false
+
+        if(!hasAnimations)
+            animate.style.display="none"
 
     </script>
     <script src="js/ContentCustomizer.js"></script>
 </model-viewer>
-<script type="module" src="js/model-viewer/dist/uqido-model-viewer.js"></script>
+<script type="module" src="js/model-viewer/dist/uqido-model-viewer.min.js"></script>
+<script nomodule src="js/model-viewer/dist/uqido-model-viewer-legacy.js"></script>
 </body>
 </html>

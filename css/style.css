@@ -9,15 +9,15 @@ body{
     margin-top:-4px;
     max-width: 200px;
     font-size: medium;
-    text-shadow:
+    /*text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
             -1px 1px 0 #000,
-            1px 1px 0 #000;
+            1px 1px 0 #000;*/
 }
 
 .hotspot-bar{
-    width: 0px;
+    width: 0;
     background-color: #6ca0cf;
 }
 
