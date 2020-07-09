@@ -30,7 +30,7 @@ function parseJson(json){
         console.log("Is not Localhost!")
     }
     console.log("Base Url:"+baseurl);
-    const assets = json.assets_manici;
+    const assets = json.assets;
     getContentRoot();
     for(asset of assets){
         instantiateModelContent(`${baseurl}`,asset);
