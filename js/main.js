@@ -9,7 +9,7 @@ function getContentRoot(){
 function instantiateModelContent(srcUrl,assetName){
     const element = document.createElement("a");
     element.classList.add("image-element");
-    element.style.backgroundImage=`url('img/Manici/${assetName}.jpg')`;
+    element.style.backgroundImage=`url('img/tubi/${assetName}.jpg')`;
     element.href=`${srcUrl}/${assetName}.html`;
     contentRoot.appendChild(element);
 }
