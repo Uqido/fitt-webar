@@ -7,13 +7,13 @@ body{
 .hotspot-text{
     margin-left: 8px;
     margin-top:-4px;
-    max-width: 200px;
-    font-size: medium;
-    /*text-shadow:
+    max-width: 300px;
+    font-size: larger;
+    text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
             -1px 1px 0 #000,
-            1px 1px 0 #000;*/
+            1px 1px 0 #000;
 }
 
 .hotspot-bar{
