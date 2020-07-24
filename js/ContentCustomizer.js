@@ -126,8 +126,8 @@ function changeColorByIndex(index) {
     if(index===undefined)
         return;
 
-    const color=Object.values(colors[index])[0];
-    const bump=Object.values(bumps[index])[0];
+    const color=colors[index];
+    const bump=bumps[index];
 
     //console.log("color:"+color+" bump:"+bump);
     changeColorAndBump(index,color,bump);
