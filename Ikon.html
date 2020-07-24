@@ -47,12 +47,26 @@
 <model-viewer id="modelViewer"
               class='model-viewer' ar autoplay camera-controls src='models/Ikon.glb'
               ios-src='models/Ikon.usdz' alt='' noloop camera-orbit="-30deg 55deg 60%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look"
+              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/construction_yard_1k.hdr"
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
 
+        <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="-0.03 0.21 -0.21" data-normal="0.00 1.00 0.00">
+    <div class="unselectable" style="display: flex;transform: translateX(50%)">
+        <div class="hotspot-bar"></div>
+        <div class="unselectable hotspot-text text-white">High performance, quick system couplings  coated with soft rubber</div>
+    </div>
+</div>
+
+        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.22 0.10 -0.17" data-normal="0.00 1.00 0.00">
+    <div class="unselectable" style="display: flex;transform: translateX(50%)">
+        <div class="hotspot-bar"></div>
+        <div class="unselectable hotspot-text text-white">Premium soft touch material - Multi-Spray Nozzle</div>
+    </div>
+</div>
+
     <div id="viewer-bottom" class="viewer-bottom">
-        <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected" style="background-color: rgb(103, 193, 191);"></div>
+        <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button" style="background-color: rgb(103, 193, 191);"></div>
         <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button" style="background-color: rgb(175, 202, 17);"></div>
         <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button" style="background-color: rgb(40, 152, 213);"></div>
         <div id="color4" onclick="changeColorByIndex(3)" class="clickable color-button" style="background-color: rgb(38, 153, 214);"></div>
@@ -60,7 +74,7 @@
         <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
     </div>
     <script>
-        const materialArray = [['FITT_Ikon_mat',]];
+        const materialArray = [['FITT_Ikon_colorable',]];
         let colors = ['rgb(103, 193, 191)','rgb(175, 202, 17)','rgb(40, 152, 213)','rgb(38, 153, 214)',]
 
         let bumps = [1,1,1,1,]
@@ -69,16 +83,20 @@
 
             "-30deg 55deg 60%",
 
+            "180deg 60deg 70%",
+
+            "20deg 50deg 60%",
+
         ];
 
         const getAnnotations = function () {
             return [
-
+                document.getElementById('hotspot-Couplings'),document.getElementById('hotspot-Gun')
             ].filter((elem) => elem);
         }
 
         const positionToAnnotation = {
-            0:[]
+            0:[],1:['hotspot-Couplings'],2:['hotspot-Gun']
             };
 
         const hasAnimations=true

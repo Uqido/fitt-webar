@@ -47,24 +47,24 @@
 <model-viewer id="modelViewer"
               class='model-viewer' ar autoplay camera-controls src='models/ForceLite.glb'
               ios-src='models/ForceLite.usdz' alt='' noloop camera-orbit="-30deg 55deg 60%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look"
+              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/construction_yard_1k.hdr"
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
-    
+
         <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="-0.03 0.22 -0.21" data-normal="0.00 1.00 0.00">
     <div class="unselectable" style="display: flex;transform: translateX(50%)">
         <div class="hotspot-bar"></div>
         <div class="unselectable hotspot-text text-white">Aluminium crush-proof couplings</div>
     </div>
 </div>
-    
+
         <div class="unselectable" id="hotspot-Hose" slot="hotspot-Hose" data-position="0.01 0.18 0.20" data-normal="0.00 1.00 0.00">
     <div class="unselectable" style="display: flex;transform: translateX(50%)">
         <div class="hotspot-bar"></div>
         <div class="unselectable hotspot-text text-white">No PVC - No phthalates - No lead</div>
     </div>
 </div>
-    
+
     <div id="viewer-bottom" class="viewer-bottom">
             <div id="move_camera" onclick="rotateCamera()" class="clickable" style="background-image: url(img/Move.png);"></div>
         <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
@@ -72,17 +72,17 @@
     <script>
         const materialArray = [[]];
         let colors = []
-        
+
         let bumps = []
 
         const positions = [
-            
+
             "-30deg 55deg 60%",
-            
+
             "180deg 60deg 70%",
-            
+
             "20deg 50deg 60%",
-            
+
         ];
 
         const getAnnotations = function () {
@@ -94,7 +94,7 @@
         const positionToAnnotation = {
             0:[],1:['hotspot-Couplings'],2:['hotspot-Hose']
             };
-        
+
         const hasAnimations=false
 
         if(!hasAnimations)
