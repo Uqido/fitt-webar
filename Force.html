@@ -47,7 +47,7 @@
 <model-viewer id="modelViewer"
               class='model-viewer' ar autoplay camera-controls src='models/Force.glb'
               ios-src='models/Force.usdz' alt='' noloop camera-orbit="-60deg 55deg 60%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/construction_yard_1k.hdr"
+              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
 
@@ -66,16 +66,18 @@
 </div>
 
     <div id="viewer-bottom" class="viewer-bottom">
-        <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected" style="background-color: rgb(70, 175, 219);"></div>
-        <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button" style="background-color: rgb(175, 202, 17);"></div>
+        <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected" style="background-color: rgb(0, 151, 215);"></div>
+        <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button" style="background-color: rgb(149, 193, 31);"></div>
+        <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button" style="background-color: rgb(20, 20, 20);"></div>
+
             <div id="move_camera" onclick="rotateCamera()" class="clickable" style="background-image: url(img/Move.png);"></div>
         <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
     </div>
     <script>
         const materialArray = [['FITT_Force_colorable',]];
-        let colors = ['rgb(70, 175, 219)','rgb(175, 202, 17)',]
+        let colors = ['rgb(15, 45, 84)','rgb(73, 117, 11)','rgb(20, 20, 20)']
 
-        let bumps = [1,1,]
+        let bumps = [1,1,1]
 
         const positions = [
 
