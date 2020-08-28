@@ -51,10 +51,17 @@
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
 
+    <div class="unselectable" id="hotspot-Fittings" slot="hotspot-Fittings" data-position="0.00 0.04 -0.01" data-normal="0.00 1.00 0.00">
+        <div class="unselectable" style="display: flex;transform: translateX(50%)">
+            <div class="hotspot-bar"></div>
+            <div class="unselectable hotspot-text text-white">100% Leak-proof by high efficiency compression system</div>
+        </div>
+    </div>
+
         <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="0.06 0.21 -0.17" data-normal="0.00 1.00 0.00">
     <div class="unselectable" style="display: flex;transform: translateX(50%)">
         <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">High performance, quick system couplings  coated with soft rubber</div>
+        <div class="unselectable hotspot-text text-white">High performance, quick system couplings coated with soft rubber</div>
     </div>
 </div>
 
@@ -75,11 +82,15 @@
     </div>
     <script>
         const materialArray = [['FITT_Force_colorable',]];
+
+        //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
         let colors = ['rgb(15, 45, 84)','rgb(73, 117, 11)','rgb(20, 20, 20)']
 
         let bumps = [1,1,1]
 
         const positions = [
+
+             "60deg 55deg 60%",
 
             "-30deg 55deg 60%",
 
@@ -91,12 +102,12 @@
 
         const getAnnotations = function () {
             return [
-                document.getElementById('hotspot-Couplings'),document.getElementById('hotspot-Gun')
+            document.getElementById('hotspot-Fittings'),document.getElementById('hotspot-Couplings'),document.getElementById('hotspot-Gun')
             ].filter((elem) => elem);
         }
 
         const positionToAnnotation = {
-            0:[],1:['hotspot-Couplings'],2:['hotspot-Gun']
+            0:[],1:['hotspot-Fittings'],2:['hotspot-Couplings'],3:['hotspot-Gun']
             };
 
         const hasAnimations=true
