@@ -47,7 +47,7 @@
 <model-viewer id="modelViewer"
               class='model-viewer' ar autoplay camera-controls src='models/Ikon.glb'
               ios-src='models/Ikon.usdz' alt='' noloop camera-orbit="-60deg 55deg 60%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/construction_yard_1k.hdr"
+              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
               camera-target="-20cm 0 0"
               exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
     <script src="js/LoadingBar.js"></script>
@@ -76,7 +76,9 @@
     </div>
     <script>
         const materialArray = [['FITT_Ikon_colorable',]];
-        let colors = ['rgb(103, 193, 191)','rgb(175, 202, 17)','rgb(200, 137, 187)','rgb(38, 153, 214)',]
+        
+        //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
+        let colors = ['rgb(66, 117, 116)','rgb(175, 202, 17)','rgb(138, 96, 129)','rgb(31, 94, 128)',]
 
         let bumps = [1,1,1,1,]
 
