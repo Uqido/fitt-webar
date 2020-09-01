@@ -30,12 +30,13 @@ function init() {
     });
     modelviewer.addEventListener("load",function () {
         console.log("Model load");
-        setTimeout(()=>{
+        progress.classList.add("hidden");
+        /*setTimeout(()=>{
             changeColorByIndex(0);
             setTimeout(()=>{
                 progress.classList.add("hidden");
             },100);
-        },100);
+        },100);*/
     });
     setTimeout(()=>{
         progress.classList.add("hidden");

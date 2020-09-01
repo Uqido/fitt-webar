@@ -130,8 +130,8 @@ function changeColorByIndex(index) {
     const bump=bumps[index];
 
     //console.log("color:"+color+" bump:"+bump);
-    if (color===undefined)
-        return;
+    /*if (color===undefined)
+        return;*/
     changeColorAndBump(index,color,bump);
 }
 
