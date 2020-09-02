@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="fullscreen-100">
+
 <head>
     <meta charset="utf-8">
     <title>BlueforceRJ</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="white"/>
+    <meta name="theme-color" content="white" />
     <meta name="description" content="">
 
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
@@ -43,76 +44,110 @@
     </style>
 
 </head>
+
 <body class="fullscreen-100">
-<model-viewer id="modelViewer"
-              class='model-viewer' ar autoplay camera-controls src='models/BlueForceRJ.glb'
-              ios-src='models/BlueForceRJ.usdz' alt='' noloop camera-orbit="160deg 75deg 80%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
-              exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
-    <script src="js/LoadingBar.js"></script>
+    <model-viewer id="modelViewer" class='model-viewer' ar autoplay camera-controls src='models/BlueForceRJ.glb'
+        ios-src='models/BlueForceRJ.usdz' alt='' noloop camera-orbit="160deg 75deg 80%" min-camera-orbit="auto auto 80%"
+        ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
+        exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
+        <script src="js/LoadingBar.js"></script>
 
-        <div class="unselectable" id="hotspot-ShockProof" slot="hotspot-ShockProof" data-position="0.00 0.04 -0.01" data-normal="0.00 1.00 0.00">
-    <div class="unselectable" style="display: flex;transform: translateX(50%)">
-        <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">Resistenza agli urti</div>
-    </div>
-</div>
+        <div class="unselectable" id="hotspot-ShockProof" slot="hotspot-ShockProof" data-position="0.00 0.04 -0.01"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">Resistenza agli urti</div>
+            </div>
+        </div>
 
-        <div class="unselectable" id="hotspot-Junction" slot="hotspot-Junction" data-position="0.01 0.04 -0.19" data-normal="0.00 1.00 0.00">
-    <div class="unselectable" style="display: flex;transform: translateX(50%)">
-        <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">Sistema di giunzione evoluto</div>
-    </div>
-</div>
+        <div class="unselectable" id="hotspot-Junction" slot="hotspot-Junction" data-position="0.01 0.04 -0.19"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">Sistema di giunzione evoluto</div>
+            </div>
+        </div>
 
-        <div class="unselectable" id="hotspot-Impermeable" slot="hotspot-Impermeable" data-position="0.01 0.04 0.13" data-normal="0.00 1.00 0.00">
-    <div class="unselectable" style="display: flex;transform: translateX(50%)">
-        <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">Impermeabilità agli inquinanti e anticorrosione</div>
-    </div>
-</div>
+        <div class="unselectable" id="hotspot-Impermeable" slot="hotspot-Impermeable" data-position="0.01 0.04 0.13"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">Impermeabilità agli inquinanti e anticorrosione</div>
+            </div>
+        </div>
 
-    <div id="viewer-bottom" class="viewer-bottom">
-            <div id="move_camera" onclick="rotateCamera()" class="clickable" style="background-image: url(img/Move.png);"></div>
-        <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
-    </div>
-    <script>
-        const materialArray = [[]];
-        let colors = []
+        <div id="viewer-bottom" class="viewer-bottom">
+            <div id="move_camera" onclick="rotateCamera()" class="clickable"
+                style="background-image: url(img/Move.png);"></div>
+            <div id="animate" onclick="modelAnimate()" class="clickable"
+                style="background-image: url(img/Animate.png);"></div>
+        </div>
+        <script>
+            const materialArray = [[]];
+            let colors = []
 
-        let bumps = []
+            let bumps = []
 
-        const positions = [
+            const positions = [
 
-            "-30deg 55deg 60%",
+                "-30deg 55deg 60%",
 
-            "-90deg 55deg 65%",
+                "-90deg 55deg 65%",
 
-            "170deg 85deg 80%",
+                "170deg 85deg 80%",
 
-            "90deg 85deg 65%",
+                "90deg 85deg 65%",
 
-        ];
+            ];
 
-        const getAnnotations = function () {
-            return [
-                document.getElementById('hotspot-ShockProof'),document.getElementById('hotspot-Junction'),document.getElementById('hotspot-Impermeable')
-            ].filter((elem) => elem);
-        }
+            const getAnnotations = function () {
+                return [
+                    document.getElementById('hotspot-ShockProof'), document.getElementById('hotspot-Junction'), document.getElementById('hotspot-Impermeable')
+                ].filter((elem) => elem);
+            }
 
-        const positionToAnnotation = {
-            0:[],1:['hotspot-ShockProof'],2:['hotspot-Junction'],3:['hotspot-Impermeable']
+            const positionToAnnotation = {
+                0: [], 1: ['hotspot-ShockProof'], 2: ['hotspot-Junction'], 3: ['hotspot-Impermeable']
             };
 
-        const hasAnimations=true
+            const hasAnimations = true
 
-        if(!hasAnimations)
-            animate.style.display="none"
+            if (!hasAnimations)
+                animate.style.display = "none"
 
-    </script>
-    <script src="js/ContentCustomizer.js"></script>
-</model-viewer>
-<script type="module" src="js/model-viewer/dist/uqido-model-viewer.min.js"></script>
-<script nomodule src="js/model-viewer/dist/uqido-model-viewer-legacy.js"></script>
+        </script>
+        <script>
+            const modelViewer = document.querySelector("model-viewer");
+            const colorButtons = document.getElementsByClassName("color-button");
+    
+            modelViewer.addEventListener('finished-animation', () => {
+                modelViewer.pause();
+            });
+    
+            modelViewer.addEventListener('change-color', (event) => {
+                const colorString = event.detail;
+    
+                if (!colorString) {
+                    return;
+                }
+    
+                for (let mat of materialArray) {
+                    console.log(mat)
+                }
+    
+                for (let mat of modelViewer.model.materials) {
+                    console.log(mat.name);
+                    if (materialArray.includes(mat.name)) {
+                        console.log("set color " + colorString)
+                        mat.pbrMetallicRoughness.setBaseColorFactor(colorString);
+                    }
+                }
+            });
+        </script>
+        <script src="js/ContentCustomizer.js"></script>
+    </model-viewer>
+    <script type="module" src="js/model-viewer/dist/new-model-viewer.js"></script>
+    <!-- <script nomodule src="js/model-viewer/dist/uqido-model-viewer-legacy.js"></script> -->
 </body>
+
 </html>

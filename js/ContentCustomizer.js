@@ -5,15 +5,15 @@ if (typeof modelviewer === "undefined") {
 
 modelviewer.addEventListener("worklet-created", (event) => {
     //console.log("Worklet-created");
-    annotations=getAnnotations();
+    annotations = getAnnotations();
     if (typeof worker === "undefined") {
         window.worker = event.detail.worklet;
-    }else {
+    } else {
         worker = event.detail.worklet;
     }
 })
 
-const buttons=document.getElementsByClassName("color-button")
+const buttons = document.getElementsByClassName("color-button")
 
 function clearSelected() {
     for (let button of buttons) {
@@ -26,8 +26,6 @@ function colorToArray(color) {
 }
 
 function changeColorAndBump(index, color, bumpStrength) {
-    if (typeof worker === "undefined") return;
-
     changeColorByString(color)
     changeBumpStrength(bumpStrength)
 
@@ -35,25 +33,27 @@ function changeColorAndBump(index, color, bumpStrength) {
     buttons[index].classList.add("selected");
 }
 
-function changeColorByString(color){
+function changeColorByString(color) {
     let colorArray = colorToArray(color);
-    worker.postMessage({type: "change-color", payload: colorArray})
+    modelViewer.dispatchEvent(new CustomEvent("change-color", { detail: colorArray }));
 }
 
-function changeBumpStrength(bumpStrength){
-    worker.postMessage({type: "change-bump", payload: bumpStrength})
+function changeBumpStrength(bumpStrength) {
+    //modelViewer.dispatchEvent({ type: "change-bump", payload: bumpStrength })
 }
 
-let isOpen=false;
+let isOpen = false;
 
 function modelAnimate() {
-    if(modelViewer.paused){
-        if(isOpen){
-            modelViewer.animationName="Close";
-            isOpen=false;
-        }else{
-            modelViewer.animationName="Open";
-            isOpen=true;
+    console.log("animate")
+    console.log(modelViewer.paused)
+    if (modelViewer.paused) {
+        if (isOpen) {
+            modelViewer.animationName = "Close";
+            isOpen = false;
+        } else {
+            modelViewer.animationName = "Open";
+            isOpen = true;
         }
         modelViewer.play();
     }
@@ -61,19 +61,21 @@ function modelAnimate() {
 
 function initializeCustomizerOnMaterials(materialsName) {
 
-    modelviewer.innerHTML +=`<script type="experimental-scene-graph-worklet" allow="material-properties;messaging" >
+    modelviewer.innerHTML += `<script>
 
-        //console.log('Hello from the scene graph worklet!');
-
+        const modelViewer = document.querySelector("model-viewer");
+        console.log(modelViewer);
         let materials=[]
     
-        self.addEventListener('model-change', () => {
-            for(let matName of [${materialsName.map(elem=> '"'+elem+'"')}]){
-                materials.push(model.materials.find(mat=> mat.name===matName));
+        modelViewer.addEventListener('model-load', () => {
+            console.log("assigning materials");
+            modelViewer.pause();
+            for(let matName of [${materialsName.map(elem => '"' + elem + '"')}]){
+                materials.push(model.materials.find(mat => mat.name === matName));
             }
         });
     
-        self.addEventListener('message', (event) => {
+        modelViewer.addEventListener('message', (event) => {
             if(event.data.type==="change-color"){
                 var colorArray=event.data.payload;
                 if(colorArray.length===3){
@@ -93,7 +95,7 @@ function initializeCustomizerOnMaterials(materialsName) {
 </script>`
 }
 
-function inIframe () {
+function inIframe() {
     try {
         return window.self !== window.top;
     } catch (e) {
@@ -101,15 +103,15 @@ function inIframe () {
     }
 }
 
-if(inIframe()){
-    document.getElementById('viewer-bottom').style.display="none";
+if (inIframe()) {
+    document.getElementById('viewer-bottom').style.display = "none";
     //modelviewer.classList.add("no-ar-button")
 }
 
-let annotations=getAnnotations();
+let annotations = getAnnotations();
 
 for (let annotation of annotations) {
-    annotation.style.display="none";
+    annotation.style.display = "none";
 }
 
 let cameraIndex = 0;
@@ -123,43 +125,42 @@ function colorsCount() {
 }
 
 function changeColorByIndex(index) {
-    if(index===undefined)
+    if (index === undefined)
         return;
 
-    const color=colors[index];
-    const bump=bumps[index];
+    const color = colors[index];
+    const bump = bumps[index];
 
-    //console.log("color:"+color+" bump:"+bump);
-    /*if (color===undefined)
-        return;*/
-    changeColorAndBump(index,color,bump);
+    console.log("color:" + color + " bump:" + bump);
+
+    changeColorAndBump(index, color, bump);
 }
 
 function rotateCamera(index) {
     let toEnable;
-    if(index===undefined) {
+    if (index === undefined) {
         //console.log("moving to cameraIndex:"+cameraIndex)
         cameraIndex = (++cameraIndex) % positions.length;
         toEnable = positionToAnnotation[cameraIndex];
         modelViewer.cameraOrbit = positions[cameraIndex];
-    }else{
+    } else {
         //console.log("moving to index:"+index)
         toEnable = positionToAnnotation[index];
         modelViewer.cameraOrbit = positions[index];
     }
 
     for (let annotation of annotations) {
-        annotation.style.display="none";
-        if(toEnable.includes(annotation.id)){
-            annotation.style.display="block";
+        annotation.style.display = "none";
+        if (toEnable.includes(annotation.id)) {
+            annotation.style.display = "block";
         }
     }
 }
 
-window.addEventListener("message",receiveMessage,false);
+window.addEventListener("message", receiveMessage, false);
 
 function receiveMessage(event) {
-    if(!event.data)
+    if (!event.data)
         return;
     try {
         const action = JSON.parse(event.data);
@@ -182,16 +183,16 @@ function receiveMessage(event) {
             let win = window;
             if (inIframe())
                 win = win.parent;
-            win.postMessage(JSON.stringify({action: "cameraPositionCount", data: cameraPositionsCount()}), "*");
+            win.postMessage(JSON.stringify({ action: "cameraPositionCount", data: cameraPositionsCount() }), "*");
         } else if (action.action === "getColorCount") {
             let win = window;
             if (inIframe())
                 win = win.parent;
-            win.postMessage(JSON.stringify({action: "colorCount", data: colorsCount()}), "*");
+            win.postMessage(JSON.stringify({ action: "colorCount", data: colorsCount() }), "*");
         }
-    }catch (e) {
+    } catch (e) {
         console.log(e);
     }
 }
 
-initializeCustomizerOnMaterials(materialArray);
+//initializeCustomizerOnMaterials(materialArray);

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="fullscreen-100">
+
 <head>
     <meta charset="utf-8">
     <title>Force</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="white"/>
+    <meta name="theme-color" content="white" />
     <meta name="description" content="">
 
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
@@ -43,82 +44,117 @@
     </style>
 
 </head>
+
 <body class="fullscreen-100">
-<model-viewer id="modelViewer"
-              class='model-viewer' ar autoplay camera-controls src='models/Force.glb'
-              ios-src='models/Force.usdz' alt='' noloop camera-orbit="-60deg 55deg 60%"
-              min-camera-orbit="auto auto 80%" ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
-              exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
-    <script src="js/LoadingBar.js"></script>
+    <model-viewer id="modelViewer" class='model-viewer' ar autoplay camera-controls src='models/Force.glb'
+        ios-src='models/Force.usdz' alt='' noloop camera-orbit="-60deg 55deg 60%" min-camera-orbit="auto auto 80%"
+        ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
+        exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
+        <script src="js/LoadingBar.js"></script>
 
-    <div class="unselectable" id="hotspot-Fittings" slot="hotspot-Fittings" data-position="0.00 0.04 -0.01" data-normal="0.00 1.00 0.00">
-        <div class="unselectable" style="display: flex;transform: translateX(50%)">
-            <div class="hotspot-bar"></div>
-            <div class="unselectable hotspot-text text-white">100% Leak-proof by high efficiency compression system</div>
+        <div class="unselectable" id="hotspot-Fittings" slot="hotspot-Fittings" data-position="0.00 0.04 -0.01"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">100% Leak-proof by high efficiency compression system
+                </div>
+            </div>
         </div>
-    </div>
 
-        <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="0.06 0.21 -0.17" data-normal="0.00 1.00 0.00">
-    <div class="unselectable" style="display: flex;transform: translateX(50%)">
-        <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">High performance, quick system couplings coated with soft rubber</div>
-    </div>
-</div>
+        <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="0.06 0.21 -0.17"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">High performance, quick system couplings coated with
+                    soft rubber</div>
+            </div>
+        </div>
 
-        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.12 0.09 -0.12" data-normal="0.00 1.00 0.00">
-    <div class="unselectable" style="display: flex;transform: translateX(50%)">
-        <div class="hotspot-bar"></div>
-        <div class="unselectable hotspot-text text-white">Premium soft touch material - Multi-Spray Nozzle</div>
-    </div>
-</div>
+        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.12 0.09 -0.12"
+            data-normal="0.00 1.00 0.00">
+            <div class="unselectable" style="display: flex;transform: translateX(50%)">
+                <div class="hotspot-bar"></div>
+                <div class="unselectable hotspot-text text-white">Premium soft touch material - Multi-Spray Nozzle</div>
+            </div>
+        </div>
 
-    <div id="viewer-bottom" class="viewer-bottom">
-        <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected" style="background-color: rgb(0, 151, 215);"></div>
-        <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button" style="background-color: rgb(149, 193, 31);"></div>
-        <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button" style="background-color: rgb(20, 20, 20);"></div>
+        <div id="viewer-bottom" class="viewer-bottom">
+            <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected"
+                style="background-color: rgb(0, 151, 215);"></div>
+            <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button"
+                style="background-color: rgb(149, 193, 31);"></div>
+            <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button"
+                style="background-color: rgb(20, 20, 20);"></div>
 
-            <div id="move_camera" onclick="rotateCamera()" class="clickable" style="background-image: url(img/Move.png);"></div>
-        <div id="animate" onclick="modelAnimate()" class="clickable" style="background-image: url(img/Animate.png);"></div>
-    </div>
-    <script>
-        const materialArray = [['FITT_Force_colorable',]];
+            <div id="move_camera" onclick="rotateCamera()" class="clickable"
+                style="background-image: url(img/Move.png);"></div>
+            <div id="animate" onclick="modelAnimate()" class="clickable"
+                style="background-image: url(img/Animate.png);"></div>
+        </div>
 
-        //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
-        let colors = ['rgb(15, 45, 84)','rgb(73, 117, 11)','rgb(20, 20, 20)']
+        <script>
+            const materialArray = ['FITT_Force_colorable',];
 
-        let bumps = [1,1,1]
+            //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
+            let colors = ['rgb(15, 45, 84)', 'rgb(73, 117, 11)', 'rgb(20, 20, 20)']
 
-        const positions = [
+            let bumps = [1, 1, 1]
 
-             "60deg 55deg 60%",
+            const positions = [
+                "60deg 55deg 60%",
+                "-30deg 55deg 60%",
+                "180deg 60deg 70%",
+                "20deg 50deg 60%",
+            ];
 
-            "-30deg 55deg 60%",
+            const getAnnotations = function () {
+                return [
+                    document.getElementById('hotspot-Fittings'), document.getElementById('hotspot-Couplings'), document.getElementById('hotspot-Gun')
+                ].filter((elem) => elem);
+            }
 
-            "180deg 60deg 70%",
-
-            "20deg 50deg 60%",
-
-        ];
-
-        const getAnnotations = function () {
-            return [
-            document.getElementById('hotspot-Fittings'),document.getElementById('hotspot-Couplings'),document.getElementById('hotspot-Gun')
-            ].filter((elem) => elem);
-        }
-
-        const positionToAnnotation = {
-            0:[],1:['hotspot-Fittings'],2:['hotspot-Couplings'],3:['hotspot-Gun']
+            const positionToAnnotation = {
+                0: [], 1: ['hotspot-Fittings'], 2: ['hotspot-Couplings'], 3: ['hotspot-Gun']
             };
 
-        const hasAnimations=true
+            const hasAnimations = true
 
-        if(!hasAnimations)
-            animate.style.display="none"
+            if (!hasAnimations)
+                animate.style.display = "none"
 
-    </script>
-    <script src="js/ContentCustomizer.js"></script>
-</model-viewer>
-<script type="module" src="js/model-viewer/dist/uqido-model-viewer.min.js"></script>
-<script nomodule src="js/model-viewer/dist/uqido-model-viewer-legacy.js"></script>
+        </script>
+        <script>
+            const modelViewer = document.querySelector("model-viewer");
+            const colorButtons = document.getElementsByClassName("color-button");
+    
+            modelViewer.addEventListener('finished-animation', () => {
+                modelViewer.pause();
+            });
+    
+            modelViewer.addEventListener('change-color', (event) => {
+                const colorString = event.detail;
+    
+                if (!colorString) {
+                    return;
+                }
+    
+                for (let mat of materialArray) {
+                    console.log(mat)
+                }
+    
+                for (let mat of modelViewer.model.materials) {
+                    console.log(mat.name);
+                    if (materialArray.includes(mat.name)) {
+                        console.log("set color " + colorString)
+                        mat.pbrMetallicRoughness.setBaseColorFactor(colorString);
+                    }
+                }
+            });
+        </script>
+        <script src="js/ContentCustomizer.js"></script>
+    </model-viewer>
+    <script type="module" src="js/model-viewer/dist/new-model-viewer.js"></script>
+    <!-- <script nomodule src="js/model-viewer/dist/uqido-model-viewer-legacy.js"></script> -->
 </body>
+
 </html>
