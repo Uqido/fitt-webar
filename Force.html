@@ -47,12 +47,12 @@
 
 <body class="fullscreen-100">
     <model-viewer id="modelViewer" class='model-viewer' ar autoplay camera-controls src='models/Force.glb'
-        ios-src='models/Force.usdz' alt='' noloop camera-orbit="-60deg 55deg 60%" min-camera-orbit="auto auto 80%"
+        ios-src='models/Force.usdz' alt='' noloop camera-orbit="-60deg 55deg 80%" min-camera-orbit="auto auto 80%"
         ar-modes="scene-viewer webxr quick-look" environment-image="img/whipple_creek_regional_park_04_1k.hdr"
         exposure="1" shadow-intensity="1.5" shadow-softness="0.8" quick-look-browsers="safari chrome">
         <script src="js/LoadingBar.js"></script>
 
-        <div class="unselectable" id="hotspot-Fittings" slot="hotspot-Fittings" data-position="0.00 0.04 -0.01"
+        <div class="unselectable" id="hotspot-Fittings" slot="hotspot-Fittings" data-position="-0.278 0.067 0.212"
             data-normal="0.00 1.00 0.00">
             <div class="unselectable" style="display: flex;transform: translateX(50%)">
                 <div class="hotspot-bar"></div>
@@ -61,16 +61,15 @@
             </div>
         </div>
 
-        <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="0.06 0.21 -0.17"
+        <div class="unselectable" id="hotspot-Couplings" slot="hotspot-Couplings" data-position="-0.337 0.076 -0.149"
             data-normal="0.00 1.00 0.00">
             <div class="unselectable" style="display: flex;transform: translateX(50%)">
                 <div class="hotspot-bar"></div>
-                <div class="unselectable hotspot-text text-white">High performance, quick system couplings coated with
-                    soft rubber</div>
+                <div class="unselectable hotspot-text text-white">Super Compact and ergonomic</div>
             </div>
         </div>
 
-        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.12 0.09 -0.12"
+        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.459 0.09 -0.144"
             data-normal="0.00 1.00 0.00">
             <div class="unselectable" style="display: flex;transform: translateX(50%)">
                 <div class="hotspot-bar"></div>
@@ -102,10 +101,10 @@
             let bumps = [1, 1, 1]
 
             const positions = [
-                "60deg 55deg 60%",
-                "-30deg 55deg 60%",
-                "180deg 60deg 70%",
-                "20deg 50deg 60%",
+                "-10deg 55deg 90%",
+                "-30deg 75deg 80%",
+                "270deg 80deg 70%",
+                "-50deg 70deg 80%",
             ];
 
             const getAnnotations = function () {
@@ -127,7 +126,7 @@
         <script>
             const modelViewer = document.querySelector("model-viewer");
             const colorButtons = document.getElementsByClassName("color-button");
-    
+
             modelViewer.addEventListener('finished-animation', () => {
                 modelViewer.pause();
             });
