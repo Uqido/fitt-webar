@@ -79,11 +79,11 @@
         </div>
 
         <div id="viewer-bottom" class="viewer-bottom">
-            <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected"
+            <div id="color1" onclick="changeTextureByIndex(0)" class="clickable color-button selected"
                 style="background-color: rgb(0, 151, 215);"></div>
-            <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button"
+            <div id="color2" onclick="changeTextureByIndex(1)" class="clickable color-button"
                 style="background-color: rgb(149, 193, 31);"></div>
-            <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button"
+            <div id="color3" onclick="changeTextureByIndex(2)" class="clickable color-button"
                 style="background-color: rgb(20, 20, 20);"></div>
 
             <div id="move_camera" onclick="rotateCamera()" class="clickable"
@@ -93,7 +93,7 @@
         </div>
 
         <script>
-            const materialArray = ['FITT_Force_colorable',];
+            const materialArray = ['FITT_Force_mat',];
 
             //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
             let colors = ['rgb(15, 45, 84, 255)', 'rgb(73, 117, 11, 255)', 'rgb(20, 20, 20, 255)']
