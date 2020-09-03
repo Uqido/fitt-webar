@@ -23,6 +23,15 @@ function clearSelected() {
 
 function colorToArray(color) {
     return color.replace(/[^\d,]/g, '').split(',').map(value => value / 255);
+    //return color.split(',').map(numberString => parseFloat(numberString) / 255);
+}
+
+function changeTextureAndBump(index, texturePath, bumpStrength) {
+    changeTextureByPath(texturePath)
+    changeBumpStrength(bumpStrength)
+
+    clearSelected();
+    buttons[index].classList.add("selected");
 }
 
 function changeColorAndBump(index, color, bumpStrength) {
@@ -33,13 +42,17 @@ function changeColorAndBump(index, color, bumpStrength) {
     buttons[index].classList.add("selected");
 }
 
+function changeTextureByPath(texturePath) {
+    modelViewer.dispatchEvent(new CustomEvent("change-texture", { detail: texturePath }))
+}
+
 function changeColorByString(color) {
     let colorArray = colorToArray(color);
     modelViewer.dispatchEvent(new CustomEvent("change-color", { detail: colorArray }));
 }
 
 function changeBumpStrength(bumpStrength) {
-    //modelViewer.dispatchEvent({ type: "change-bump", payload: bumpStrength })
+    //modelViewer.dispatchEvent(new CustomEvent("change-bump", { detail: bumpStrength }));
 }
 
 let isOpen = false;
@@ -122,6 +135,18 @@ function cameraPositionsCount() {
 
 function colorsCount() {
     return colors.length;
+}
+
+function changeTextureByIndex(index) {
+    if (index === undefined)
+        return;
+
+    const texture = textures[index];
+    const bump = bumps[index];
+
+    console.log("texture: " + texture + " bump: " + bump);
+
+    changeTextureAndBump(index, texture, bump);
 }
 
 function changeColorByIndex(index) {
