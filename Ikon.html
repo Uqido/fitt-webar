@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.22 0.10 -0.17"
+        <div class="unselectable" id="hotspot-Gun" slot="hotspot-Gun" data-position="-0.37 0.08 -0.208"
             data-normal="0.00 1.00 0.00">
             <div class="unselectable" style="display: flex;transform: translateX(50%)">
                 <div class="hotspot-bar"></div>
@@ -71,13 +71,13 @@
         </div>
 
         <div id="viewer-bottom" class="viewer-bottom">
-            <div id="color1" onclick="changeColorByIndex(0)" class="clickable color-button selected"
+            <div id="color1" onclick="changeTextureByIndex(0)" class="clickable color-button selected"
                 style="background-color: rgb(103, 193, 191);"></div>
-            <div id="color2" onclick="changeColorByIndex(1)" class="clickable color-button"
+            <div id="color2" onclick="changeTextureByIndex(1)" class="clickable color-button"
                 style="background-color: rgb(175, 202, 17);"></div>
-            <div id="color3" onclick="changeColorByIndex(2)" class="clickable color-button"
+            <div id="color3" onclick="changeTextureByIndex(2)" class="clickable color-button"
                 style="background-color: rgb(200, 137, 187);"></div>
-            <div id="color4" onclick="changeColorByIndex(3)" class="clickable color-button"
+            <div id="color4" onclick="changeTextureByIndex(3)" class="clickable color-button"
                 style="background-color: rgb(38, 153, 214);"></div>
             <div id="move_camera" onclick="rotateCamera()" class="clickable"
                 style="background-image: url(img/Move.png);"></div>
@@ -89,6 +89,7 @@
 
             //Questi valori sono tunati a mano per risolvere bug del viewer che li fa diversi
             let colors = ['rgb(66, 117, 116, 255)', 'rgb(175, 202, 17, 255)', 'rgb(138, 96, 129, 255)', 'rgb(31, 94, 128, 255)',]
+            let textures = ['ikon/light-blue.png', 'ikon/green.png', 'ikon/pink.png', 'ikon/blue.png']
 
             let bumps = [1, 1, 1, 1,]
 
@@ -121,22 +122,22 @@
         <script>
             const modelViewer = document.querySelector("model-viewer");
             const colorButtons = document.getElementsByClassName("color-button");
-    
+
             modelViewer.addEventListener('finished-animation', () => {
                 modelViewer.pause();
             });
-    
+
             modelViewer.addEventListener('change-color', (event) => {
                 const colorString = event.detail;
-    
+
                 if (!colorString) {
                     return;
                 }
-    
+
                 for (let mat of materialArray) {
                     console.log(mat)
                 }
-    
+
                 for (let mat of modelViewer.model.materials) {
                     console.log(mat.name);
                     if (materialArray.includes(mat.name)) {
@@ -145,6 +146,23 @@
                     }
                 }
             });
+
+            modelViewer.addEventListener('change-texture', (event) => {
+                const texture = event.detail;
+
+                if (!texture) {
+                    return;
+                }
+
+                texturePath = "models/textures/" + texture;
+
+                for (let mat of modelViewer.model.materials) {
+                    if (materialArray.includes(mat.name)) {
+                        console.log("set texture " + texture)
+                        mat.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(texturePath);
+                    }
+                }
+            })
         </script>
         <script src="js/ContentCustomizer.js"></script>
     </model-viewer>
