@@ -196,8 +196,10 @@ function receiveMessage(event) {
                 changeColorByIndex(action.data);
             else if (typeof action.data === "string")
                 changeColorByString(action.data)
+        } else if (action.action === "changeTexture") {
+            changeTextureByIndex(action.data);
         } else if (action.action === "changeRoughness") {
-            changeBumpStrength(action.data)
+            changeBumpStrength(action.data);
         } else if (action.action === "changeCamera") {
             rotateCamera(action.data);
         } else if (action.action === "animate") {
